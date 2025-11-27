@@ -29,6 +29,18 @@
     font-family: roboto;
     border:1px solid black;
 }
+.button-demo {
+    background-color: #a5d5ec;
+    color: black;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: roboto;
+    border:1px solid black;
+}
 
 .button:hover {
     background-color: #678572;

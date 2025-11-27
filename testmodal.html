@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Example</title>
+    <style>
+        /* --- CSS Styles for the Modal --- */
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+            max-width: 500px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .start-now {
+            background-color: #4CAF50;
+            /* Green */
+            color: white;
+        }
+
+        .get-started {
+            background-color: #008CBA;
+            /* Blue */
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <h1 class="h1">Onboarding: UI/UX demo</h1>
+
+    <p class="body">
+
+        <button class="button-demo" id="applyBtn" href="https://sammi-glia.github.io/testprod/redirected.html">Apply Online</button>
+
+    <div id="applicationModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Choose Your Application Path</h2>
+            <p>Select the option that best fits your needs to proceed with the application process.</p>
+            <div class="modal-buttons">
+                <button 
+                    class="start-now" 
+                    onclick="window.location.href='https://sammi-glia.github.io/testprod/redirected.html'">
+                    Start Now
+                </button>
+                <button 
+                    class="start-now" 
+                    onclick="window.location.href='https://sammi-glia.github.io/testprod/redirected.html'">
+                    Get Started
+                </button>
+            </div>
+        </div>
+
+    </div>
+    </p>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("applicationModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("applyBtn");
+
+        // Get the <span> element that closes the modal (the 'x')
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
