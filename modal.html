@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <script async src="https://api.glia.com/salemove_integration.js"></script>
     <title>Sub-page</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal Example</title>
+    <title>Modal Flash and Redirect</title>
     <style>
         /* --- CSS Styles for the Modal --- */
 
@@ -18,16 +18,13 @@
             /* Hidden by default */
             position: fixed;
             /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
+            z-index: 1000;
+            /* High z-index to ensure visibility */
             left: 0;
             top: 0;
             width: 100%;
-            /* Full width */
             height: 100%;
-            /* Full height */
             overflow: auto;
-            /* Enable scroll if needed */
             background-color: rgba(0, 0, 0, 0.4);
             /* Black w/ opacity */
         }
@@ -36,17 +33,37 @@
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
-            /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            /* Could be more or less, depending on screen size */
             max-width: 500px;
             border-radius: 8px;
             text-align: center;
         }
 
-        /* The Close Button */
+        /* Standard Button Styles */
+        .modal-buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .start-now {
+            background-color: #4CAF50;
+        }
+
+        /* Green */
+        .get-started {
+            background-color: #008CBA;
+        }
+
+        /* Blue */
+
+        /* The Close Button (Included for structure, but won't be used) */
         .close {
             color: #aaa;
             float: right;
@@ -60,55 +77,25 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        .modal-buttons button {
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .start-now {
-            background-color: #4CAF50;
-            /* Green */
-            color: white;
-        }
-
-        .get-started {
-            background-color: #008CBA;
-            /* Blue */
-            color: white;
-        }
     </style>
 </head>
 
 <body>
-
     <h1 class="h1">Onboarding: UI/UX demo</h1>
 
     <p class="body">
 
-        <button class="button-demo" id="applyBtn" href="https://sammi-glia.github.io/testprod/redirected.html">Apply
-            Online</button>
+        <button class="button-demo" id="applyBtn">Apply Online</button>
 
     <div id="applicationModal" class="modal">
 
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Choose Your Application Path</h2>
-            <p>Select the option that best fits your needs to proceed with the application process.</p>
+            <h2>Application Redirecting...</h2>
+            <p>Please wait while we transfer you to the application portal.</p>
             <div class="modal-buttons">
-                <button class="start-now"
-                    onclick="window.location.href='https://sammi-glia.github.io/testprod/redirected.html'">
-                    Start Now
-                </button>
-                <button class="start-now"
-                    onclick="window.location.href='https://sammi-glia.github.io/testprod/redirected.html'">
-                    Get Started
-                </button>
+                <button class="start-now">Start Now</button>
+                <button class="get-started">Get Started</button>
             </div>
         </div>
 
@@ -116,28 +103,33 @@
     </p>
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("applicationModal");
+        // Get the modal and the main button
+        const modal = document.getElementById("applicationModal");
+        const btn = document.getElementById("applyBtn");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("applyBtn");
+        // Define the target URL
+        const REDIRECT_URL = 'https://sammi-glia.github.io/testprod/redirected.html';
 
-        // Get the <span> element that closes the modal (the 'x')
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
+        // When the user clicks the "Apply Online" button
         btn.onclick = function () {
+            // 1. Show the modal by setting its display property
             modal.style.display = "block";
+
+            // 2. IMMEDIATELY redirect the user to the target URL
+            // The browser will execute this command right after the previous one,
+            // resulting in only a brief flash of the modal before navigation starts.
+            window.location.href = REDIRECT_URL;
         }
 
-        // When the user clicks on <span> (x), close the modal
+        // --- Modal Closing Logic (Kept but unnecessary due to immediate redirect) ---
+        var span = document.getElementsByClassName("close")[0];
+
         span.onclick = function () {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 modal.style.display = "none";
             }
         }
